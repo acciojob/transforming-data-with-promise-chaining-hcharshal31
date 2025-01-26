@@ -5,9 +5,18 @@ let outputNum = document.getElementById("output");
 let btn = document.getElementById("btn");
 
 btn.addEventListener("click", () => {
+
+    let promise = new Promise((resolve) => {
+        setTimeout(() => {
+          let num = parseInt(inputNum.value); // Get the input number
+          outputNum.textContent = `Result: ${num}`;
+          resolve(num);
+        }, 2000);
+      });    
+
 	promise
 	.then((data) =>{
-		outputNum.textContent = `Result: ${data}`;
+		// outputNum.textContent = `Result: ${data}`;
 		return promise1(data);
 	})
 	.then((data) =>{
@@ -27,23 +36,14 @@ btn.addEventListener("click", () => {
 		return promise5(data);
 	})
 	.then((data) =>{
-		outputNum.textContent = `Result: ${data}`;
+		outputNum.textContent = `Final Result: ${data}`;
 	})
 });
 
-let promise = new Promise(resolve =>{
-	setTimeout(() => {
-		let num = parseInt(prompt());
-		inputNum.value = num;
-		resolve(num);
-	}, 2000);
-})
 
 let promise1 = (data) =>{ 
 	return new Promise(resolve =>{
 		setTimeout(() => {
-			inputNum.value = data;
-			// outputNum.textContent = `Result: ${outputNum}`;
 			resolve(data);
 		}, 2000);
 	});
@@ -53,7 +53,6 @@ let promise2 = (data) => {
 	return new Promise(resolve => {
 		setTimeout(() => {
 			data *= 2;
-			inputNum.value = data;
 			resolve(data);
 		}, 1000);
 	})
@@ -63,7 +62,6 @@ let promise3 = (data) => {
 	return new Promise(resolve => {
 		setTimeout(() => {
 			data -= 3;
-			inputNum.value = data;
 			resolve(data);
 		}, 1000);
 	})
@@ -73,7 +71,6 @@ let promise4 = data => {
 	return new Promise(resolve => {
 		setTimeout(() => {
 			data /= 2;
-			inputNum.value = data;
 			resolve(data);
 		}, 1000);
 	})
@@ -83,7 +80,6 @@ let promise5 = data => {
 	return new Promise(resolve => {
 		setTimeout(() => {
 			data += 10;
-			inputNum.value = data;
 			resolve(data);
 		}, 1000);
 	})
