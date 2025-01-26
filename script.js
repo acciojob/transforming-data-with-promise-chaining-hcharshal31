@@ -1,26 +1,50 @@
 //your JS code here. If required.
-btn.addEventListener("click", () => {
-	
-});
-
-// let num = parseInt(prompt());
 let inputNum = document.getElementById("ip");
 let outputNum = document.getElementById("output");
+// let val = document.getElementById("ip").value;
+let btn = document.getElementById("btn");
 
-let promise = new Promise((resolve, reject) =>{
-	setTimeout(() => {
-		inputNum.value = num;
-		
-		resolve(num);
-	}, 2000);
+btn.addEventListener("click", () => {
+	promise
+	.then((data) =>{
+		outputNum.textContent = `Result: ${data}`;
+		return promise1(data);
+	})
+	.then((data) =>{
+		outputNum.textContent = `Result: ${data}`;
+		return promise2(data);
+	})
+	.then((data) =>{
+		outputNum.textContent = `Result: ${data}`;
+		return promise3(data);
+	})
+	.then((data) =>{
+		outputNum.textContent = `Result: ${data}`;
+		return promise4(data);
+	})
+	.then((data) =>{
+		outputNum.textContent = `Result: ${data}`;
+		return promise5(data);
+	})
+	.then((data) =>{
+		outputNum.textContent = `Result: ${data}`;
+	})
 });
 
+let promise = new Promise(resolve =>{
+	setTimeout(() => {
+		let num = parseInt(prompt());
+		inputNum.value = num;
+		resolve(num);
+	}, 2000);
+})
+
 let promise1 = (data) =>{ 
-	return new Promise((resolve, reject) =>{
+	return new Promise(resolve =>{
 		setTimeout(() => {
-			inputNum.value = num;
+			inputNum.value = data;
 			// outputNum.textContent = `Result: ${outputNum}`;
-			resolve(num);
+			resolve(data);
 		}, 2000);
 	});
 }
@@ -35,7 +59,7 @@ let promise2 = (data) => {
 	})
 }
 
-let promise4 = (data) => {
+let promise3 = (data) => {
 	return new Promise(resolve => {
 		setTimeout(() => {
 			data -= 3;
@@ -45,7 +69,7 @@ let promise4 = (data) => {
 	})
 }
 
-let promise4 = (data) => {
+let promise4 = data => {
 	return new Promise(resolve => {
 		setTimeout(() => {
 			data /= 2;
@@ -55,7 +79,7 @@ let promise4 = (data) => {
 	})
 }
 
-let promise5 = (data) => {
+let promise5 = data => {
 	return new Promise(resolve => {
 		setTimeout(() => {
 			data += 10;
@@ -64,27 +88,3 @@ let promise5 = (data) => {
 		}, 1000);
 	})
 }
-
-promise.then(data => {
-	outputNum.textContent = `Result: ${data}`;
-	return promise1;
-})
-.then(data => {
-	outputNum.textContent = `Result: ${data}`;
-	return promise2;
-})
-.then(data => {
-	outputNum.textContent = `Result: ${data}`;
-	return promise3;
-})
-.then(data => {
-	outputNum.textContent = `Result: ${data}`;
-	return promise4;
-})
-.then(data => {
-	outputNum.textContent = `Result: ${data}`;
-	return promise5;
-})
-.then(data => {
-	outputNum.textContent = `Final Result: ${data}`;
-})
